@@ -1,0 +1,33 @@
+<!-- Admin Manage Users Page -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Users - Smart Aid and Relief Alliance</title>
+    <th:block th:replace="fragments/layout :: head"></th:block>
+</head>
+<body>
+<th:block th:replace="fragments/layout :: navbar"></th:block>
+<div class="container py-4">
+    <h2>Manage Users</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.fullName}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.role}"></td>
+                <td th:text="${user.status}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<th:block th:replace="fragments/layout :: footer"></th:block>
+</body>
+</html>

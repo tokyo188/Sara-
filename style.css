@@ -1,0 +1,209 @@
+/* SARA Custom Styles */
+
+:root {
+    --sara-primary: #0d6efd;
+    --sara-secondary: #6c757d;
+    --sara-success: #198754;
+    --sara-danger: #dc3545;
+    --sara-warning: #ffc107;
+    --sara-info: #0dcaf0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navigation */
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* Cards */
+.card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Buttons */
+.btn {
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+/* Hero Section */
+.bg-primary {
+    background: linear-gradient(135deg, var(--sara-primary) 0%, #0056b3 100%) !important;
+}
+
+/* Status Badges */
+.badge {
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* Form Controls */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--sara-primary);
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* Alert Messages */
+.alert {
+    border-radius: 0.5rem;
+    border: none;
+}
+
+/* Tables */
+.table {
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+/* Dashboard Cards */
+.dashboard-card {
+    background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+    border: 1px solid #e9ecef;
+    border-radius: 1rem;
+}
+
+.dashboard-stat {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--sara-primary);
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+}
+
+/* Loading States */
+.btn.loading {
+    position: relative;
+    color: transparent;
+}
+
+.btn.loading::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .display-4 {
+        font-size: 2.5rem;
+    }
+    
+    .btn-lg {
+        font-size: 1rem;
+        padding: 0.75rem 1.5rem;
+    }
+    
+    .dashboard-stat {
+        font-size: 1.5rem;
+    }
+}
+
+/* Priority/Urgency Colors */
+.urgency-critical {
+    color: var(--sara-danger) !important;
+    border-color: var(--sara-danger) !important;
+}
+
+.urgency-high {
+    color: var(--sara-warning) !important;
+    border-color: var(--sara-warning) !important;
+}
+
+.urgency-medium {
+    color: var(--sara-info) !important;
+    border-color: var(--sara-info) !important;
+}
+
+.urgency-low {
+    color: var(--sara-secondary) !important;
+    border-color: var(--sara-secondary) !important;
+}
+
+/* Status indicators */
+.status-available {
+    color: var(--sara-success);
+}
+
+.status-reserved {
+    color: var(--sara-warning);
+}
+
+.status-delivered {
+    color: var(--sara-info);
+}
+
+.status-expired {
+    color: var(--sara-secondary);
+}
+
+/* Resource type icons */
+.resource-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.resource-food { background-color: rgba(25, 135, 84, 0.1); color: var(--sara-success); }
+.resource-water { background-color: rgba(13, 202, 240, 0.1); color: var(--sara-info); }
+.resource-shelter { background-color: rgba(108, 117, 125, 0.1); color: var(--sara-secondary); }
+.resource-medicine { background-color: rgba(220, 53, 69, 0.1); color: var(--sara-danger); }
+.resource-clothing { background-color: rgba(255, 193, 7, 0.1); color: var(--sara-warning); }
+.resource-blankets { background-color: rgba(13, 110, 253, 0.1); color: var(--sara-primary); }
+
+/* Animation classes */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Print styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    .card {
+        box-shadow: none !important;
+        border: 1px solid #dee2e6 !important;
+    }
+}

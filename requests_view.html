@@ -1,0 +1,23 @@
+<!-- Volunteer View Request Page -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Request Details - Smart Aid and Relief Alliance</title>
+    <th:block th:replace="fragments/layout :: head"></th:block>
+</head>
+<body>
+<th:block th:replace="fragments/layout :: navbar"></th:block>
+<div class="container py-4">
+    <h2>Request Details</h2>
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${request.title}"></h5>
+            <p class="card-text" th:text="${request.description}"></p>
+            <p class="card-text"><strong>Status:</strong> <span th:text="${request.status}"></span></p>
+        </div>
+    </div>
+    <a th:href="@{/volunteer/requests}" class="btn btn-secondary">Back to Requests</a>
+</div>
+<th:block th:replace="fragments/layout :: footer"></th:block>
+</body>
+</html>

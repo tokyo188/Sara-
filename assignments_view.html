@@ -1,0 +1,23 @@
+<!-- Admin View Assignment Page -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Assignment Details - Smart Aid and Relief Alliance</title>
+    <th:block th:replace="fragments/layout :: head"></th:block>
+</head>
+<body>
+<th:block th:replace="fragments/layout :: navbar"></th:block>
+<div class="container py-4">
+    <h2>Assignment Details</h2>
+    <div class="card mb-3">
+        <div class="card-body">
+            <p class="card-text"><strong>Request:</strong> <span th:text="${assignment.request.title}"></span></p>
+            <p class="card-text"><strong>Volunteer:</strong> <span th:text="${assignment.volunteer.fullName}"></span></p>
+            <p class="card-text"><strong>Status:</strong> <span th:text="${assignment.status}"></span></p>
+        </div>
+    </div>
+    <a th:href="@{/admin/assignments}" class="btn btn-secondary">Back to Assignments</a>
+</div>
+<th:block th:replace="fragments/layout :: footer"></th:block>
+</body>
+</html>

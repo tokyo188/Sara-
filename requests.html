@@ -1,0 +1,35 @@
+<!-- Volunteer Available Requests Page -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Available Requests - Smart Aid and Relief Alliance</title>
+    <th:block th:replace="fragments/layout :: head"></th:block>
+</head>
+<body>
+<th:block th:replace="fragments/layout :: navbar"></th:block>
+<div class="container py-4">
+    <h2>Available Requests</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="request : ${requests}">
+                <td th:text="${request.title}"></td>
+                <td th:text="${request.description}"></td>
+                <td th:text="${request.status}"></td>
+                <td>
+                    <a th:href="@{'/volunteer/requests/' + ${request.id}}" class="btn btn-sm btn-info">View</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<th:block th:replace="fragments/layout :: footer"></th:block>
+</body>
+</html>

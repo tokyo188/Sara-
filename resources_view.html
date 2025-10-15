@@ -1,0 +1,24 @@
+<!-- Victim View Resource Page -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Resource Details - Smart Aid and Relief Alliance</title>
+    <th:block th:replace="fragments/layout :: head"></th:block>
+</head>
+<body>
+<th:block th:replace="fragments/layout :: navbar"></th:block>
+<div class="container py-4">
+    <h2>Resource Details</h2>
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${resource.name}"></h5>
+            <p class="card-text"><strong>Type:</strong> <span th:text="${resource.type}"></span></p>
+            <p class="card-text"><strong>Quantity:</strong> <span th:text="${resource.quantity}"></span></p>
+            <p class="card-text"><strong>Status:</strong> <span th:text="${resource.status}"></span></p>
+        </div>
+    </div>
+    <a th:href="@{/victim/resources}" class="btn btn-secondary">Back to Resources</a>
+</div>
+<th:block th:replace="fragments/layout :: footer"></th:block>
+</body>
+</html>

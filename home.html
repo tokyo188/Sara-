@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head}">
+    <title>Home - SARA</title>
+</head>
+<body>
+    <nav th:replace="~{fragments/layout :: navbar}"></nav>
+    
+    <div th:replace="~{fragments/layout :: alerts}"></div>
+
+    <!-- Hero Section -->
+    <section class="bg-primary text-white py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4">
+                        <i class="bi bi-heart-fill me-3"></i>
+                        Smart Aid and Relief Alliance
+                    </h1>
+                    <p class="lead mb-4">
+                        Connecting communities during disasters. Find resources, request help, or volunteer to make a difference.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a th:href="@{/victim/requests/new}" class="btn btn-light btn-lg">
+                            <i class="bi bi-exclamation-triangle me-2"></i>Get Help
+                        </a>
+                        <a th:href="@{/donor/resources/new}" class="btn btn-outline-light btn-lg">
+                            <i class="bi bi-gift me-2"></i>Donate
+                        </a>
+                        <a th:href="@{/volunteer/requests}" class="btn btn-outline-light btn-lg">
+                            <i class="bi bi-people me-2"></i>Volunteer
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <div class="bg-white bg-opacity-10 rounded-3 p-4">
+                        <i class="bi bi-shield-heart display-1 mb-3"></i>
+                        <h3>Community Support</h3>
+                        <p>Together we rebuild stronger</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col">
+                    <h2 class="mb-3">How SARA Helps</h2>
+                    <p class="lead text-muted">Our platform connects victims, donors, and volunteers in times of crisis</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="bg-danger bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                <i class="bi bi-exclamation-triangle-fill text-danger" style="font-size: 2rem;"></i>
+                            </div>
+                            <h4 class="card-title">Request Help</h4>
+                            <p class="card-text">Victims can quickly request specific resources and assistance during emergencies.</p>
+                            <a th:href="@{/victim/requests/new}" class="btn btn-outline-danger">Make Request</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                <i class="bi bi-gift-fill text-success" style="font-size: 2rem;"></i>
+                            </div>
+                            <h4 class="card-title">Donate Resources</h4>
+                            <p class="card-text">Donors can post available resources and coordinate distribution efforts.</p>
+                            <a th:href="@{/donor/resources/new}" class="btn btn-outline-success">Add Resource</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="bg-info bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                <i class="bi bi-people-fill text-info" style="font-size: 2rem;"></i>
+                            </div>
+                            <h4 class="card-title">Volunteer</h4>
+                            <p class="card-text">Volunteers can find nearby opportunities to help and make a difference.</p>
+                            <a th:href="@{/volunteer/requests}" class="btn btn-outline-info">Find Opportunities</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Resources -->
+    <section class="py-5 bg-light" th:if="${recentResources != null and !recentResources.isEmpty()}">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col">
+                    <h2 class="mb-3">Available Resources</h2>
+                    <p class="text-muted">Recently posted resources from our community</p>
+                </div>
+                <div class="col-auto">
+                    <a th:href="@{/resources}" class="btn btn-primary">View All Resources</a>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4" th:each="resource : ${recentResources}">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="card-title" th:text="${resource.name}">Resource Name</h5>
+                                <span class="badge bg-success" th:if="${resource.verified}">
+                                    <i class="bi bi-check-circle me-1"></i>Verified
+                                </span>
+                            </div>
+                            <p class="card-text text-muted small" th:text="${resource.description}">Description</p>
+                            <div class="row g-2 mb-3">
+                                <div class="col-6">
+                                    <small class="text-muted">Type:</small><br>
+                                    <span class="badge bg-primary" th:text="${resource.type}">Type</span>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted">Quantity:</small><br>
+                                    <strong th:text="${resource.quantity}">0</strong>
+                                </div>
+                            </div>
+                            <small class="text-muted">
+                                <i class="bi bi-geo-alt me-1"></i>
+                                <span th:text="${resource.location}">Location</span>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Urgent Requests -->
+    <section class="py-5" th:if="${urgentRequests != null and !urgentRequests.isEmpty()}">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col">
+                    <h2 class="mb-3">Urgent Requests</h2>
+                    <p class="text-muted">People in need of immediate assistance</p>
+                </div>
+                <div class="col-auto">
+                    <a th:href="@{/requests}" class="btn btn-warning">View All Requests</a>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4" th:each="request : ${urgentRequests}">
+                    <div class="card h-100 border-warning">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="card-title" th:text="${request.title}">Request Title</h5>
+                                <span class="badge" th:classappend="${request.urgencyBadgeClass}" th:text="${request.urgency}">Urgency</span>
+                            </div>
+                            <p class="card-text text-muted small" th:text="${request.description}">Description</p>
+                            <div class="row g-2 mb-3">
+                                <div class="col-6">
+                                    <small class="text-muted">Type:</small><br>
+                                    <span class="badge bg-secondary" th:text="${request.resourceType}">Type</span>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted">Needed:</small><br>
+                                    <strong th:text="${request.quantityNeeded}">0</strong>
+                                </div>
+                            </div>
+                            <small class="text-muted">
+                                <i class="bi bi-geo-alt me-1"></i>
+                                <span th:text="${request.location}">Location</span>
+                            </small>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <a th:href="@{/volunteer/requests}" class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-hand-thumbs-up me-1"></i>Help
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container text-center">
+            <h2 class="mb-4">Ready to Make a Difference?</h2>
+            <p class="lead mb-4">Join our community of helpers and make an impact today</p>
+            <a th:href="@{/register}" class="btn btn-light btn-lg me-3">
+                <i class="bi bi-person-plus me-2"></i>Join SARA
+            </a>
+            <a th:href="@{/about}" class="btn btn-outline-light btn-lg">
+                <i class="bi bi-info-circle me-2"></i>Learn More
+            </a>
+        </div>
+    </section>
+
+    <footer th:replace="~{fragments/layout :: footer}"></footer>
+    <div th:replace="~{fragments/layout :: scripts}"></div>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head}">
+    <title>Register - SARA</title>
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card shadow">
+                    <div class="card-body p-4">
+                        <div class="text-center mb-4">
+                            <h2 class="text-primary">
+                                <i class="bi bi-heart-fill me-2"></i>SARA
+                            </h2>
+                            <p class="text-muted">Create your account</p>
+                        </div>
+
+                        <!-- Alert Messages -->
+                        <div th:if="${error}" class="alert alert-danger" role="alert">
+                            <i class="bi bi-exclamation-triangle me-2"></i>
+                            <span th:text="${error}"></span>
+                        </div>
+
+                        <form th:action="@{/register}" method="post" th:object="${user}">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="username" class="form-label">Username *</label>
+                                    <input type="text" class="form-control" th:field="*{username}" 
+                                           th:classappend="${#fields.hasErrors('username')} ? 'is-invalid' : ''" required>
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+                                </div>
+                                
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Email *</label>
+                                    <input type="email" class="form-control" th:field="*{email}" 
+                                           th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' : ''" required>
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="password" class="form-label">Password *</label>
+                                    <input type="password" class="form-control" th:field="*{password}" 
+                                           th:classappend="${#fields.hasErrors('password')} ? 'is-invalid' : ''" required>
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                                </div>
+                                
+                                <div class="col-md-6 mb-3">
+                                    <label for="role" class="form-label">Role *</label>
+                                    <select class="form-select" th:field="*{role}" required>
+                                        <option value="">Select your role</option>
+                                        <option th:each="userRole : ${userRoles}" 
+                                                th:value="${userRole}" 
+                                                th:text="${userRole}" 
+                                                th:selected="${userRole == user.role}">Role</option>
+                                    </select>
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="fullName" class="form-label">Full Name *</label>
+                                <input type="text" class="form-control" th:field="*{fullName}" 
+                                       th:classappend="${#fields.hasErrors('fullName')} ? 'is-invalid' : ''" required>
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="phoneNumber" class="form-label">Phone Number *</label>
+                                <input type="tel" class="form-control" th:field="*{phoneNumber}" 
+                                       th:classappend="${#fields.hasErrors('phoneNumber')} ? 'is-invalid' : ''" 
+                                       placeholder="+1234567890" required>
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Address *</label>
+                                <input type="text" class="form-control" th:field="*{address}" 
+                                       th:classappend="${#fields.hasErrors('address')} ? 'is-invalid' : ''" required>
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="city" class="form-label">City *</label>
+                                    <input type="text" class="form-control" th:field="*{city}" 
+                                           th:classappend="${#fields.hasErrors('city')} ? 'is-invalid' : ''" required>
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></div>
+                                </div>
+                                
+                                <div class="col-md-4 mb-3">
+                                    <label for="state" class="form-label">State *</label>
+                                    <input type="text" class="form-control" th:field="*{state}" 
+                                           th:classappend="${#fields.hasErrors('state')} ? 'is-invalid' : ''" required>
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('state')}" th:errors="*{state}"></div>
+                                </div>
+                                
+                                <div class="col-md-4 mb-3">
+                                    <label for="zipCode" class="form-label">Zip Code *</label>
+                                    <input type="text" class="form-control" th:field="*{zipCode}" 
+                                           th:classappend="${#fields.hasErrors('zipCode')} ? 'is-invalid' : ''" required>
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="bi bi-person-plus me-2"></i>Create Account
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <hr class="my-4">
+                        
+                        <div class="text-center">
+                            <p class="mb-0">Already have an account?</p>
+                            <a th:href="@{/login}" class="btn btn-outline-primary btn-sm mt-2">
+                                <i class="bi bi-box-arrow-in-right me-1"></i>Sign In
+                            </a>
+                        </div>
+                        
+                        <div class="text-center mt-3">
+                            <a th:href="@{/}" class="btn btn-link btn-sm">
+                                <i class="bi bi-arrow-left me-1"></i>Back to Home
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Role Information -->
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h6 class="card-title">Role Information</h6>
+                        <small class="text-muted">
+                            <strong>Donor:</strong> Post and manage available resources<br>
+                            <strong>Volunteer:</strong> View requests and help those in need<br>
+                            <strong>Victim:</strong> Request help and view available resources<br>
+                            <strong>Admin:</strong> Manage users, resources, and requests
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="~{fragments/layout :: scripts}"></div>
+</body>
+</html>

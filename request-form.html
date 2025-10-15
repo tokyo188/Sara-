@@ -1,0 +1,33 @@
+<!-- Victim Request Form (Create/Edit) Page -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Request Form - Smart Aid and Relief Alliance</title>
+    <th:block th:replace="fragments/layout :: head"></th:block>
+</head>
+<body>
+<th:block th:replace="fragments/layout :: navbar"></th:block>
+<div class="container py-4">
+    <h2 th:text="${request.id != null} ? 'Edit Request' : 'New Request'"></h2>
+    <form th:action="${request.id != null} ? @{'/victim/requests/' + ${request.id}} : @{/victim/requests}" th:object="${request}" method="post">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" th:field="*{title}" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" th:field="*{description}" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="urgencyLevel" class="form-label">Urgency Level</label>
+            <select class="form-control" id="urgencyLevel" th:field="*{urgencyLevel}">
+                <option th:each="level : ${urgencyLevels}" th:value="${level}" th:text="${level}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-danger" th:text="${request.id != null} ? 'Save Changes' : 'Submit Request'"></button>
+        <a th:href="@{/victim/requests}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+<th:block th:replace="fragments/layout :: footer"></th:block>
+</body>
+</html>

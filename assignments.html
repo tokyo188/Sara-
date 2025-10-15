@@ -1,0 +1,33 @@
+<!-- Volunteer Assignments Page -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Assignments - Smart Aid and Relief Alliance</title>
+    <th:block th:replace="fragments/layout :: head"></th:block>
+</head>
+<body>
+<th:block th:replace="fragments/layout :: navbar"></th:block>
+<div class="container py-4">
+    <h2>My Assignments</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Request</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="assignment : ${assignments}">
+                <td th:text="${assignment.request.title}"></td>
+                <td th:text="${assignment.status}"></td>
+                <td>
+                    <a th:href="@{'/volunteer/requests/' + ${assignment.request.id}}" class="btn btn-sm btn-info">View Request</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<th:block th:replace="fragments/layout :: footer"></th:block>
+</body>
+</html>

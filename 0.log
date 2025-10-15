@@ -1,0 +1,61 @@
+2025-10-15T02:17:57.248Z [INFO] ----------------------invoke build_java_project----------------------
+2025-10-15T02:17:57.249Z [INFO] [Tool.invoke]({name: build_java_project, input: {
+  "codeChangesDetails": "- Restrict donor resource type options in DonorController\n  - Updated newResourceForm and error handling to pass only donor-appropriate ResourceType values to the form.",
+  "codeChangesMessage": "Restrict donor resource type options for donor resource form",
+  "projectPath": "c:\\Users\\USER\\sara 2"
+}}).
+2025-10-15T02:17:57.249Z [INFO] [Task.start](): Starting task toolCall
+2025-10-15T02:17:57.250Z [INFO] [Task.start](): Started task toolCall
+2025-10-15T02:17:57.250Z [INFO] [Tool.invoke] validate GitHub Copilot license.
+2025-10-15T02:17:58.226Z [INFO] Copilot user info:{
+  "access_type_sku": "free_educational_quota",
+  "analytics_tracking_id": "ac7fc7f88d91b653192917e23e9bf626",
+  "assigned_date": "2025-10-13T21:05:43+05:30",
+  "can_signup_for_limited": false,
+  "chat_enabled": true,
+  "copilot_plan": "individual",
+  "organization_login_list": [],
+  "organization_list": [],
+  "quota_reset_date": "2025-11-01",
+  "quota_snapshots": {
+    "chat": {
+      "entitlement": 0,
+      "overage_count": 0,
+      "overage_permitted": false,
+      "percent_remaining": 100,
+      "quota_id": "chat",
+      "quota_remaining": 0,
+      "remaining": 0,
+      "unlimited": true,
+      "timestamp_utc": "2025-10-15T02:17:57.220Z"
+    },
+    "completions": {
+      "entitlement": 0,
+      "overage_count": 0,
+      "overage_permitted": false,
+      "percent_remaining": 100,
+      "quota_id": "completions",
+      "quota_remaining": 0,
+      "remaining": 0,
+      "unlimited": true,
+      "timestamp_utc": "2025-10-15T02:17:57.220Z"
+    },
+    "premium_interactions": {
+      "entitlement": 300,
+      "overage_count": 0,
+      "overage_permitted": false,
+      "percent_remaining": 96.03333333333333,
+      "quota_id": "premium_interactions",
+      "quota_remaining": 288.1,
+      "remaining": 288,
+      "unlimited": false,
+      "timestamp_utc": "2025-10-15T02:17:57.220Z"
+    }
+  },
+  "quota_reset_date_utc": "2025-11-01T00:00:00.000Z"
+}
+2025-10-15T02:17:58.228Z [WARN] "GitHub Copilot app modernization - upgrade for Java" and its tools are only available for GitHub Copilot "Pro", "Pro+", "Business" and "Enterprise" plans.
+2025-10-15T02:17:58.229Z [ERROR] [Tool.invoke] error occurs when invoking tool build_java_project: UserError: "GitHub Copilot app modernization - upgrade for Java" and its tools are only available for GitHub Copilot "Pro", "Pro+", "Business" and "Enterprise" plans.. Please upgrade your GitHub Copilot plan to use this feature or upgrading this project using other tools you prefer..
+2025-10-15T02:17:58.230Z [INFO] [Task.complete](): Completing task toolCall
+2025-10-15T02:17:58.232Z [INFO] ----------------------invoked build_java_project----------------------
+2025-10-15T02:17:58.234Z [INFO] [Task.complete](): Completed task toolCall

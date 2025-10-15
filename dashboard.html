@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head}">
+    <title>Volunteer Dashboard - SARA</title>
+</head>
+<body>
+    <nav th:replace="~{fragments/layout :: navbar}"></nav>
+    
+    <div th:replace="~{fragments/layout :: alerts}"></div>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h1 class="h3">
+                        <i class="bi bi-people me-2 text-info"></i>
+                        Volunteer Dashboard
+                    </h1>
+                    <a th:href="@{/volunteer/requests}" class="btn btn-info">
+                        <i class="bi bi-search me-1"></i>Find Opportunities
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="row g-4 mb-4">
+            <div class="col-md-4">
+                <div class="card dashboard-card h-100">
+                    <div class="card-body text-center">
+                        <div class="dashboard-stat text-info" th:text="${totalAssignments ?: 0}">0</div>
+                        <h6 class="card-title text-muted">Total Assignments</h6>
+                        <small class="text-muted">Requests you've helped with</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card dashboard-card h-100">
+                    <div class="card-body text-center">
+                        <div class="dashboard-stat text-success" th:text="${completedAssignments ?: 0}">0</div>
+                        <h6 class="card-title text-muted">Completed</h6>
+                        <small class="text-muted">Successfully completed tasks</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card dashboard-card h-100">
+                    <div class="card-body text-center">
+                        <div class="dashboard-stat text-warning" th:text="${user?.fullName ?: 'Volunteer'}">Volunteer</div>
+                        <h6 class="card-title text-muted">Welcome</h6>
+                        <small class="text-muted">Thank you for volunteering!</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- My Assignments -->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="bi bi-clipboard-check me-2"></i>
+                            My Assignments
+                        </h5>
+                        <a th:href="@{/volunteer/assignments}" class="btn btn-outline-primary btn-sm">
+                            View All
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div th:if="${myAssignments != null and !myAssignments.isEmpty()}">
+                            <div th:each="assignment, iterStat : ${myAssignments}" th:if="${iterStat.index < 3}">
+                                <div class="border-start border-info border-3 ps-3 mb-3">
+                                    <h6 class="mb-1" th:text="${assignment.request.title}">Request Title</h6>
+                                    <p class="text-muted small mb-1" th:text="${assignment.request.description}">Description</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">
+                                            <i class="bi bi-geo-alt me-1"></i>
+                                            <span th:text="${assignment.request.location}">Location</span>
+                                        </small>
+                                        <span class="badge" th:classappend="${assignment.statusBadgeClass}" th:text="${assignment.status}">Status</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div th:if="${myAssignments == null or myAssignments.isEmpty()}" class="text-center py-3">
+                            <i class="bi bi-clipboard display-4 text-muted mb-3"></i>
+                            <p class="text-muted">No active assignments</p>
+                            <a th:href="@{/volunteer/requests}" class="btn btn-info btn-sm">
+                                Find Opportunities
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Available Requests -->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="bi bi-exclamation-triangle me-2"></i>
+                            Available Requests
+                        </h5>
+                        <a th:href="@{/volunteer/requests}" class="btn btn-outline-warning btn-sm">
+                            View All
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div th:if="${availableRequests != null and !availableRequests.isEmpty()}">
+                            <div th:each="request, iterStat : ${availableRequests}" th:if="${iterStat.index < 3}">
+                                <div class="border-start border-warning border-3 ps-3 mb-3">
+                                    <div class="d-flex justify-content-between align-items-start mb-1">
+                                        <h6 class="mb-1" th:text="${request.title}">Request Title</h6>
+                                        <span class="badge" th:classappend="${request.urgencyBadgeClass}" th:text="${request.urgency}">Urgency</span>
+                                    </div>
+                                    <p class="text-muted small mb-1" th:text="${request.description}">Description</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">
+                                            <i class="bi bi-geo-alt me-1"></i>
+                                            <span th:text="${request.location}">Location</span>
+                                        </small>
+                                        <a th:href="@{'/volunteer/requests/' + ${request.id} + '/volunteer'}" 
+                                           class="btn btn-outline-info btn-sm">
+                                            Help
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div th:if="${availableRequests == null or availableRequests.isEmpty()}" class="text-center py-3">
+                            <i class="bi bi-check-circle display-4 text-success mb-3"></i>
+                            <p class="text-muted">No urgent requests at the moment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="~{fragments/layout :: footer}"></footer>
+    <div th:replace="~{fragments/layout :: scripts}"></div>
+</body>
+</html>

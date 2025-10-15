@@ -1,0 +1,33 @@
+<!-- Victim Available Resources Page -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Available Resources - Smart Aid and Relief Alliance</title>
+    <th:block th:replace="fragments/layout :: head"></th:block>
+</head>
+<body>
+<th:block th:replace="fragments/layout :: navbar"></th:block>
+<div class="container py-4">
+    <h2>Available Resources</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Quantity</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="resource : ${resources}">
+                <td th:text="${resource.name}"></td>
+                <td th:text="${resource.type}"></td>
+                <td th:text="${resource.quantity}"></td>
+                <td th:text="${resource.status}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<th:block th:replace="fragments/layout :: footer"></th:block>
+</body>
+</html>
